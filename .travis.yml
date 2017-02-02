@@ -15,7 +15,7 @@ before_install:
   - docker version
 
   # install convox
-  - curl -O https://bin.equinox.io/c/jewmwFCp7w9/convox-stable-linux-amd64.tgz &&\
+  - curl -O https://bin.equinox.io/c/jewmwFCp7w9/convox-stable-linux-amd64.tgz
   - sudo tar zxvf convox-stable-linux-amd64.tgz -C /usr/local/bin
 
 before_script:
