@@ -3,7 +3,21 @@ sudo: required
 services:
   - docker
 
+env:  
+    global:
+        - DOCKER_VERSION=1.13.0-0~debian-trusty
+
 before_install: |
+  docker version
+  # list docker-engine versions
+  apt-cache madison docker-engine
+
+  # upgrade docker-engine to specific version
+  sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine=${DOCKER_VERSION}
+
+  docker version
+
+  # install convox
   curl -O https://bin.equinox.io/c/jewmwFCp7w9/convox-stable-linux-amd64.tgz &&\
   sudo tar zxvf convox-stable-linux-amd64.tgz -C /usr/local/bin
 
@@ -11,4 +25,5 @@ before_script:
   convox start&
 
 script:
+  docker version
   make test TARGET=http://localhost
